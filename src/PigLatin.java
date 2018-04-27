@@ -1,3 +1,4 @@
+
 //Benjamin McBrayer, 4.27.2018
 //This Java console program translates text to Pig Latin.
 
@@ -17,7 +18,7 @@ public class PigLatin {
 		String newUserStringTranslate = null;
 		String userName = null;
 		String playAgain = null;
-		
+
 		System.out.println("Welcome to the Pig Latin Translator!");
 
 		// Ask for user information.
@@ -30,11 +31,12 @@ public class PigLatin {
 			// Prompt user to enter a sentence.
 			System.out.println("Please enter a word to be translated: ");
 			userString = scnr.nextLine();
-			
+
 			// Convert input to lower case.
 			newUserString = userString.toLowerCase();
-			
-			// Determine whether a word starts with a vowel or a consonant and translate to Pig Latin.
+
+			// Determine whether a word starts with a vowel or a consonant and translate to
+			// Pig Latin.
 			c = newUserString.charAt(0);
 			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
 				newUserStringTranslate = newUserString + way;
@@ -54,16 +56,15 @@ public class PigLatin {
 			playAgain = scnr.next();
 			scnr.nextLine();
 		} while (playAgain.equalsIgnoreCase("y"));
-		
+
 		// Bid the user adieu.
 		System.out.println(sayGoodbyeName(userName));
-		
+
 		scnr.close();
 
 	}
-	
-	
 
+	// Methods for communicating with the user.
 	public static String sayHelloName(String userName) {
 		return "Hello, " + userName + "!";
 	}
@@ -71,7 +72,7 @@ public class PigLatin {
 	public static String contUser(String userName) {
 		return userName + ", would you like to continue (y/n)? ";
 	}
-	
+
 	public static String sayGoodbyeName(String userName) {
 		return "Goodbye, " + userName + "!";
 	}
