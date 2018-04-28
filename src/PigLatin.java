@@ -33,7 +33,6 @@ public class PigLatin {
 			System.out.println("Please enter a word to be translated: ");
 			userString = scnr.nextLine();
 
-			// Convert input to lower case.
 			newUserString = userString;
 
 			// Determine whether a word starts with a vowel or a consonant and translate to
