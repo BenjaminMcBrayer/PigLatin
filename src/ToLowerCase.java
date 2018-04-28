@@ -11,6 +11,7 @@ public class ToLowerCase {
 		userString = scnr.nextLine();
 		System.out.println(userString.toLowerCase());
 
+		scnr.close();
 	}
 
 }

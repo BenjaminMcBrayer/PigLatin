@@ -12,7 +12,8 @@ public class PigLatin {
 		StringBuilder ay = new StringBuilder("ay");
 		char c;
 		int i;
-		String vowels = "aeiou";
+		String vowels = "AEIOUaeiou";
+		String numbersAndSymbols = "1234567890`~@#$%^&*()-=_+<>/";
 		String userString = null;
 		String newUserString = null;
 		String newUserStringTranslate = null;
@@ -33,28 +34,34 @@ public class PigLatin {
 			userString = scnr.nextLine();
 
 			// Convert input to lower case.
-			newUserString = userString.toLowerCase();
+			newUserString = userString;
 
 			// Determine whether a word starts with a vowel or a consonant and translate to
 			// Pig Latin.
 			c = newUserString.charAt(0);
-			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' | c == 'A' || c == 'E' || c == 'I' || c == 'O'
+					|| c == 'U') {
 				newUserStringTranslate = newUserString + way;
 				System.out.println(newUserStringTranslate);
 			} else {
 				for (i = 0; i < newUserString.length(); ++i) {
 					if (vowels.contains("" + newUserString.charAt(i))) {
 						newUserStringTranslate = newUserString.substring(i) + newUserString.substring(0, i) + ay;
+						System.out.println(newUserStringTranslate);
+						break;
+					} else if (numbersAndSymbols.contains("" + newUserString.charAt(i))) {
+						System.out.println(newUserString);
 						break;
 					}
 				}
-				System.out.println(newUserStringTranslate);
+				
 			}
 			// Ask if the user wants to continue.
 			System.out.println();
 			System.out.print(contUser(userName));
 			playAgain = scnr.next();
 			scnr.nextLine();
+			
 		} while (playAgain.equalsIgnoreCase("y"));
 
 		// Bid the user adieu.
