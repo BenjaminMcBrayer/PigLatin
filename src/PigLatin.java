@@ -15,8 +15,7 @@ public class PigLatin {
 		String vowels = "AEIOUaeiou";
 		String numbersAndSymbols = "1234567890`~@#$%^&*()-=_+<>/";
 		String userString = null;
-		String newUserString = null;
-		String newUserStringTranslate = null;
+		String UserStringTranslate = null;
 		String userName = null;
 		String playAgain = null;
 
@@ -33,34 +32,36 @@ public class PigLatin {
 			System.out.println("Please enter a word to be translated: ");
 			userString = scnr.nextLine();
 
-			newUserString = userString;
-
-			// Determine whether a word starts with a vowel or a consonant and translate to
-			// Pig Latin.
-			c = newUserString.charAt(0);
-			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' | c == 'A' || c == 'E' || c == 'I' || c == 'O'
-					|| c == 'U') {
-				newUserStringTranslate = newUserString + way;
-				System.out.println(newUserStringTranslate);
-			} else {
-				for (i = 0; i < newUserString.length(); ++i) {
-					if (vowels.contains("" + newUserString.charAt(i))) {
-						newUserStringTranslate = newUserString.substring(i) + newUserString.substring(0, i) + ay;
-						System.out.println(newUserStringTranslate);
-						break;
-					} else if (numbersAndSymbols.contains("" + newUserString.charAt(i))) {
-						System.out.println(newUserString);
-						break;
+			if (userString.length() != 0) {
+				// Determine whether a word starts with a vowel or a consonant and translate to
+				// Pig Latin.
+				c = userString.charAt(0);
+				if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' | c == 'A' || c == 'E' || c == 'I'
+						|| c == 'O' || c == 'U') {
+					UserStringTranslate = userString + way;
+					System.out.println(UserStringTranslate);
+				} else {
+					for (i = 0; i < userString.length(); ++i) {
+						if (vowels.contains("" + userString.charAt(i))) {
+							UserStringTranslate = userString.substring(i) + userString.substring(0, i) + ay;
+							System.out.println(UserStringTranslate);
+							break;
+						} else if (numbersAndSymbols.contains("" + userString.charAt(i))) {
+							System.out.println(userString);
+							break;
+						}
 					}
 				}
-				
+			}
+			else {
+				System.out.println("You failed to enter any text.");
 			}
 			// Ask if the user wants to continue.
 			System.out.println();
 			System.out.print(contUser(userName));
 			playAgain = scnr.next();
 			scnr.nextLine();
-			
+
 		} while (playAgain.equalsIgnoreCase("y"));
 
 		// Bid the user adieu.
