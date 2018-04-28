@@ -29,7 +29,7 @@ public class PigLatin {
 		scnr.nextLine();
 
 		do {
-			// Prompt user to enter a sentence.
+			// Prompt user to enter a word.
 			System.out.println("Please enter a word to be translated: ");
 			userString = scnr.nextLine();
 
