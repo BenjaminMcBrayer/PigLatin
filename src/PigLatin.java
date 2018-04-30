@@ -27,7 +27,7 @@ public class PigLatin {
 
 		do {
 			// Prompt user to enter a word.
-			System.out.println("Please enter a word to be translated: ");
+			System.out.println("Please enter a word, phrase, clause, or sentence to be translated: ");
 			userString = scnr.nextLine();
 
 			// Verify that user has entered text.
