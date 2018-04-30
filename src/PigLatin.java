@@ -8,79 +8,78 @@ public class PigLatin {
 
 	public static void main(String[] args) {
 		Scanner scnr = new Scanner(System.in);
+
 		StringBuilder way = new StringBuilder("way");
 		StringBuilder ay = new StringBuilder("ay");
-		char c;
-		int i;
 		String vowels = "AEIOUaeiou";
 		String numbersAndSymbols = "1234567890`~@#$%^&*()-=_+<>/";
-		String userString = null;
-		String UserStringTranslate = null;
-		String userName = null;
+		String userString;
+		String userStringTranslate = "";
+		String userName = "";
 		String playAgain = null;
+		String[] words;
+		int i;
 
 		System.out.println("Welcome to the Pig Latin Translator!");
 
 		// Ask for user information.
-		System.out.print("Please enter your name: ");
-		userName = scnr.next();
-		System.out.println(sayHelloName(userName));
-		scnr.nextLine();
+		System.out.println(getUserNameAndSayHello(userName));
 
 		do {
 			// Prompt user to enter a word.
 			System.out.println("Please enter a word to be translated: ");
 			userString = scnr.nextLine();
 
+			// Verify that user has entered text.
 			if (userString.length() != 0) {
-				// Determine whether a word starts with a vowel or a consonant and translate to
-				// Pig Latin.
-				c = userString.charAt(0);
-				if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' | c == 'A' || c == 'E' || c == 'I'
-						|| c == 'O' || c == 'U') {
-					UserStringTranslate = userString + way;
-					System.out.println(UserStringTranslate);
-				} else {
-					for (i = 0; i < userString.length(); ++i) {
-						if (vowels.contains("" + userString.charAt(i))) {
-							UserStringTranslate = userString.substring(i) + userString.substring(0, i) + ay;
-							System.out.println(UserStringTranslate);
-							break;
-						} else if (numbersAndSymbols.contains("" + userString.charAt(i))) {
-							System.out.println(userString);
-							break;
+
+				// Make the application take a line of text.
+				//FIX ME: Make the program put the suffix before any punctuation (instead of after it).
+				words = userString.split(" ");
+				for (String word : words) {
+					// Determine whether words start with a vowel or a consonant and translate to
+					// Pig Latin.
+					if (word.startsWith("a") || word.startsWith("e") || word.startsWith("i") || word.startsWith("o")
+							|| word.startsWith("u") | word.startsWith("A") || word.startsWith("E")
+							|| word.startsWith("I") || word.startsWith("O") || word.startsWith("U")) {
+						userStringTranslate = word + way;
+						System.out.print(userStringTranslate + " ");
+					} else {
+						for (i = 0; i < word.length(); ++i) {
+							if (vowels.contains("" + word.charAt(i))) {
+								userStringTranslate = word.substring(i) + word.substring(0, i) + ay;
+								System.out.print(userStringTranslate + " ");
+								break;
+							} else if (numbersAndSymbols.contains("" + word.charAt(i))) {
+								System.out.println(words);
+								break;
+							}
 						}
 					}
 				}
-			}
-			else {
+			} else {
 				System.out.println("You failed to enter any text.");
 			}
 			// Ask if the user wants to continue.
 			System.out.println();
-			System.out.print(contUser(userName));
+			System.out.println("Would you like to continue (y/n)?");
 			playAgain = scnr.next();
 			scnr.nextLine();
 
 		} while (playAgain.equalsIgnoreCase("y"));
 
 		// Bid the user adieu.
-		System.out.println(sayGoodbyeName(userName));
+		System.out.println("Goodbye!");
 
 		scnr.close();
 
 	}
 
-	// Methods for communicating with the user.
-	public static String sayHelloName(String userName) {
+	// Method for communicating with the user.
+	public static String getUserNameAndSayHello(String userName) {
+		Scanner scnr = new Scanner(System.in);
+		System.out.print("Please enter your name: ");
+		userName = scnr.nextLine();
 		return "Hello, " + userName + "!";
-	}
-
-	public static String contUser(String userName) {
-		return userName + ", would you like to continue (y/n)? ";
-	}
-
-	public static String sayGoodbyeName(String userName) {
-		return "Goodbye, " + userName + "!";
 	}
 }
