@@ -13,13 +13,14 @@ public class PigLatin {
 		StringBuilder ay = new StringBuilder("ay");
 		String beforeVowel = "";
 		final String vowels = "AEIOUaeiou";
+		final String punctuation = "!?.,";
 		// final String numbersAndSymbols = "1234567890`~@#$%^&*()-=_+<>/";
 		String username = null;
 		String userString;
-		// String userStringTranslate = "";
 		String playAgain = null;
 		String[] words;
 		int i = 0;
+		char punct;
 
 		System.out.println("Welcome to the Pig Latin Translator!");
 
@@ -36,10 +37,8 @@ public class PigLatin {
 			if (userString.length() != 0) {
 
 				// Make the application take a line of text.
-				// FIX ME: Make the program put the suffix before any punctuation (instead of
-				// after it).
 				words = userString.split(" ");
-				// System.out.println(Arrays.toString(words));
+
 				for (String word : words) {
 					if (!vowels.contains("" + word.charAt(0))) {
 						// Determine whether words start with a vowel or a consonant and translate to
@@ -50,12 +49,27 @@ public class PigLatin {
 							beforeVowel += word.charAt(i);
 							++i;
 						} while (i < word.length() && !vowels.contains("" + word.charAt(i)));
-						// System.out.println(beforeVowel);
-						System.out.print(word.substring(i) + beforeVowel + ay + " ");
-					}
-					if (vowels.contains("" + word.charAt(0))) {
-						word = word + way;
-						System.out.print(word + " ");
+
+						if (punctuation.contains("" + word.charAt(word.length() - 1))) {
+							punct = word.charAt(word.length() - 1);
+							word = word.substring(0, word.length() - 1);
+							word = word.substring(i) + beforeVowel + ay;
+							word += punct;
+							System.out.print(word + " ");
+						} else {
+							word = word.substring(i) + beforeVowel + ay;
+							System.out.print(word + " ");
+						}
+					} else if (vowels.contains("" + word.charAt(0))) {
+						if (punctuation.contains("" + word.charAt(word.length() - 1))) {
+							punct = word.charAt(word.length() - 1);
+							word = word.substring(0, word.length() - 1);
+							word = word + way;
+							word += punct;
+						} else {
+							word = word + way;
+							System.out.print(word + " ");
+						}
 					}
 				}
 
